@@ -1,20 +1,22 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[37]:
+# # Run 'Streaming_SQL_for_Signal_Streamlit.ipynb' a while first, let it run in background
+
+# In[5]:
 
 
-get_ipython().system('pip install ipykernel>=5.1.2')
-get_ipython().system('pip install pydeck')
-get_ipython().system('pip install streamlit')
-get_ipython().system('pip install pyngrok')
+#get_ipython().system('pip install ipykernel>=4.1.2')
+#get_ipython().system('pip install pydeck')
+#get_ipython().system('pip install streamlit')
+#get_ipython().system('pip install pyngrok')
 import streamlit as st
 import pandas as pd
 import datetime as dt
 import numpy as np
 
 
-# In[2]:
+# In[6]:
 
 
 from sqlalchemy import create_engine
@@ -23,7 +25,7 @@ engine = create_engine('sqlite:///C:/Users/User/Desktop/CryptoDB.db')
 #path = "/content/drive/MyDrive/Colab_Notebooks/"
 
 
-# In[3]:
+# In[7]:
 
 
 symbols = pd.read_sql('SELECT name FROM sqlite_master WHERE type="table"',
@@ -31,15 +33,17 @@ symbols = pd.read_sql('SELECT name FROM sqlite_master WHERE type="table"',
 symbols
 
 
-# In[14]:
+# # No need to run Cells start with 'st.', they will be run in the last command together.
+
+# In[ ]:
 
 
-st.title('Welcome to the live TA platform')
-#streamlit %run C:\Users\User\anaconda3\Lib\site-packages\ipykernel_launcher.py [ARGUMENTS]
+#streamlit run C:/Users/User/anaconda3/Lib/site-packages/ipykernel_launcher.py [ARGUMENTS]
+st.title('Welcome to the live Trading App platform')
 #DeltaGenerator(_root_container=0, _provided_cursor=None, _parent=None, _block_type=None, _form_data=None)
 
 
-# In[15]:
+# In[8]:
 
 
 def applyTechnicals(df):
@@ -48,9 +52,7 @@ def applyTechnicals(df):
   df.dropna(inplace=True)
 
 
-# **#Uncommant ALL following '#' while Cyrpto.db is running by Streaming_SQL_for_Signal_Streamlit.ipynb in local directory, to implement updated streaming data**
-
-# In[26]:
+# In[9]:
 
 
 def qry(symbol): 
@@ -60,39 +62,35 @@ def qry(symbol):
   df = pd.read_sql(qry_str,engine)
   df.E = pd.to_datetime(df.E)
   df = df.set_index('E')
-  df = df.resample('1min').last() #-- Or even resample("1ms")/('1s') depends on hardware --#
+  df = df.resample('1min').last() #-- Or even resample("1ms")/('1min') depends on hardware --#
   df.dropna(inplace=True)     #-- Drop Missing data --#
   applyTechnicals(df)
   df['position'] = np.where(df['SMA_7']>df['SMA_25'], 1, 0)
   return df
 
 
-# In[27]:
+# In[10]:
 
 
 qry('BTCUSDT')
 
 
-# In[18]:
+# ### Recall backtesting
+
+# In[11]:
 
 
-# recall backtesting
-
-
-# In[19]:
-
-
-'''if df['SMA_7']>df['SMA_25']: 
-  print('SELL',qry('BTCUSDT').position.diff()[-4])
-elif df['SMA_7']<df['SMA_25']:
-  print('BUY')'''
+#if df['SMA_7']>df['SMA_25']: 
+#  print('SELL',qry('BTCUSDT').position.diff()[-4])
+#elif df['SMA_7']<df['SMA_25']:
+#  print('BUY')
 #test = qry('BTCUSDT')
 #test['position'] = np.where(test['SMA_7']<test['SMA_25'], test['position']+1, test['position'])
 #test['position'] = np.where(test['SMA_7']>test['SMA_25'], test['position']-1, test['position'])
 #test
 
 
-# In[38]:
+# In[12]:
 
 
 def checkCorssSignal():  #backtesting
@@ -102,22 +100,24 @@ def checkCorssSignal():  #backtesting
           st.write(symbol)
 
 
-# In[39]:
+# ### No need to run↓
+
+# In[ ]:
 
 
 st.button('Get live SMA cross', on_click = checkCorssSignal())
 
 
-# In[ ]:
-
-
-# Downloaded this file as raw Python file .py
-# Named it to checkSMA.py
-# Put it in my current Folder
-
+# ### 1. Downloaded this file as raw Python file .py for Dashboard display.
+# ### 2. Named it to checkSMA.py, later We can edit this .py AND save, to change The Web-dashboard App display
+# ### 3. Put it in my current Folder
+# # 4.***Open checkSMA.py file, comment'#'  ALL lines starting with 'get_ipython()'and '!', then save***
+# ### 5. continue run below's command in .ipynb, The Web-dashboard App pop-up
 
 # In[ ]:
 
 
+#get_ipython().system('streamlit run checkSMA.py')
 
 
+# 
