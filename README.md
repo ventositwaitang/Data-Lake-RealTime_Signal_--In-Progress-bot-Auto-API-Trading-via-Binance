@@ -17,7 +17,7 @@ git clone https://github.com/ventositwaitang/Data-Lake-RealTime_detection_signal
 
 2. Run [Streamlit_Dashboard.ipynb](https://github.com/ventositwaitang/Data-Lake-RealTime_detection_signal/blob/main/Streamlit_Dashboard.ipynb) without Chunks starting with 'st.'
 
-3. Make sure 'checkSMA.py' is in the same folder, run command in [Streamlit_Dashboard.ipynb](https://github.com/ventositwaitang/Data-Lake-RealTime_detection_signal/blob/main/Streamlit_Dashboard.ipynb), The Web-dashboard App will pop-up then"
+3. Make sure 'checkSMA.py' is in the same folder, run command below in [Streamlit_Dashboard.ipynb](https://github.com/ventositwaitang/Data-Lake-RealTime_detection_signal/blob/main/Streamlit_Dashboard.ipynb), The Web-dashboard App will pop-up then"
    
 ```bash
 !streamlit run checkSMA.py
