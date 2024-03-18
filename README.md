@@ -23,7 +23,8 @@ git clone https://github.com/ventositwaitang/Data-Lake-RealTime_detection_signal
 !streamlit run checkSMA.py
 ```
 Click 'Get live SMA cross' to refresh signals
-▲[price range] can be expand
+
+▲[price-range] classifier can be expand
 
 ## Example
 ![image](https://github.com/ventositwaitang/Data-Lake-RealTime_detection_signal/assets/75329979/b3235b31-0843-4402-b702-9855a98c2753)
